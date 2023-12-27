@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Product</title>
+</head>
+<body>
+
+   <legend>Create a Product</legend>
+<form action="" method="POST" >
+ {% csrf_token %}
+<div class="register">
+  {% for form in forms  %}
+    {{form.label}}<br>
+    {{form}}<br>
+  {% endfor %}
+</div>
+  <div class="register-info">
+    <p id="errors">{{ form.errors }}</p>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+  {% endif %}
+    {% for message in messages %}
+        <p id="messages">{{message}}</p>
+    {% endfor %}
+    </div>
+    <input type="submit" value="Create Product">
+</form> 
+
+<script>
+    var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Product Name..';
+		form_fields[2].placeholder='Price';
+		form_fields[3].placeholder='Product Description..';
+		form_fields[4].placeholder='Product Info';
+		form_fields[5].placeholder='Product Category';
+		form_fields[6].placeholder='Quanitity Avaliable';
+
+</script>
+</body>
+</html>

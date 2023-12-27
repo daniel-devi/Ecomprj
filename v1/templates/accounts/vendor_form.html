@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as a Vendor</title>
+</head>
+<body>
+
+   <legend>Tell Us More about You</legend>
+<form action="" method="POST" >
+ {% csrf_token %}
+<div class="register">
+  {{ form.company_name.label }}<br>
+  {{ form.company_name }}<br>
+  {{ form.address.label }}<br>
+  {{ form.address}}<br>
+  {{ form.phone_number.label }}<br>
+  {{ form.phone_number}}<br>
+  {{ form.about_us.label }}<br>
+  {{ form.about_us}}<br>
+</div>
+  <div class="register-info">
+    <p id="errors">{{ form.errors }}</p>
+    {% for message in messages  %}
+        <p id="messages">{{message}}</p>
+    {% endfor %}
+    </div>
+    <input type="submit" value="Register">
+    <p>Already have an Account <a href="{% url 'signin' %}">Log in</a></p>
+    <a href="#">Forgotten Password</a>
+</form> 
+
+<script>
+    var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Company Name..';
+		form_fields[2].placeholder='Address';
+		form_fields[3].placeholder='Phone Number..';
+		form_fields[4].placeholder='About Us';
+
+</script>
+</body>
+</html>

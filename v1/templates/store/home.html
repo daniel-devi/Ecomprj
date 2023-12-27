@@ -1,0 +1,33 @@
+{% if request.user.is_authenticated %}
+<p>Hello {{request.user.username}}</p>
+<a href="{% url 'logout' %}">logout</a>
+{% else %}
+<a href="{% url 'signinv' %}">Login as Vendor</a>
+<button><a href="{% url 'signin' %}">Signin</a></button>
+<button><a href="{% url 'register' %}">Register</a></button>
+{% endif %}
+<br>
+
+
+{% for category in categorys %}
+    <h3>Category:</h3>
+    <p>{{category}}</p>
+{% endfor %}
+<br>
+<hr>
+
+<div class="products">
+    
+{% for product in products %}
+    <h2>{{product.product_name}}</h2>
+    <p>{{product.product_description}}</p>
+    <p>{{product.product_vendor}}</p>
+    <strong>$ {{product.price}}</strong>
+    <img src="{{product.product_image.url}}" alt="{{product.product_name}}" width="150px">
+
+    <br>
+    <hr>
+    <br>
+{% endfor %}
+
+</div>

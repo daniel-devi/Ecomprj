@@ -1,0 +1,79 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %} ">
+</head>
+<body>
+
+<form action="" method="POST" >
+ {% csrf_token %}
+
+
+<div id="login-box">
+  <div class="left">
+    <h1>Register as a Vendor</h1>
+      {{ form.username.label }}<br>
+        {{ form.username }}<br>
+      {{ form.email.label }}<br>
+        {{ form.email}}<br>
+    {{ form.password1.label }}<br>
+      {{ form.password1}}<br>
+    {{ form.password2.label }}<br>
+      {{ form.password2}}<br>
+    <input type="submit" value="Register" id="Register">
+  </div>
+  
+  <div class="right">
+    <span class="loginwith">Sign in with<br />social network</span>
+
+    <div class="register-info">
+      {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+          {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                  <strong>{{ field|title }}:</strong> {{ error }}
+              {% endfor %}
+          {% endfor %}
+      </div>
+  {% endif %}
+  
+  </div>
+    <button class="other-signin forgot"><a href="{% url 'password-reset' %}">Forgotten Password</a></button>
+    <button class="other-signin google"><p>Continue with
+      <p class="g">G</p>
+      <p class="o1">o</p>
+      <p class="o2">o</p>
+      <p class="g2">g</p>
+      <p class="l">l</p>
+      <p class="e">e</p></p> </p>
+      
+      </button>   
+    <p>Already have an Account <a id="signin" href="{% url 'signin' %}">Log in</a></p>
+  
+  </div>
+  <div class="or">OR</div>
+</div>
+
+
+
+<script>
+    var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username..';
+		form_fields[2].placeholder='Email..';
+		form_fields[3].placeholder='Enter password...';
+		form_fields[4].placeholder='Re-enter Password...';
+
+</script>
+</body>
+</html>
+
+
+
+
+
+

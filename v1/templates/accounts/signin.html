@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <legend>Login</legend>
+    <form action="" method="POST" >
+    {% csrf_token %}
+    <div class="login">
+    <label for="username">Username</label><br>
+     <input type="text" name="username" id="username" placeholder="Enter Your Username">
+     <br>
+     <label for="password">Password</label><br>
+     <input type="password" name="password" id="password" placeholder="Enter Your Password">
+    </div>
+      <div class="login-info">
+        <p id="errors">{{ form.errors }}</p>
+        {% for message in messages  %}
+        <p id="messages">{{message}}</p>
+        {% endfor %}
+        <input type="submit" value="Login">
+        <p>Don't have an Account <a href="{% url 'register' %}">Register</a> Now</p>
+        <a href="{% url 'password-reset' %}">Forgotten Password</a>
+      </div>
+     
+    </form> 
+</body>
+</html>
